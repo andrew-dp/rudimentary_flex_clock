@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   minWidth="955" minHeight="600" xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:components="components.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection; 
+			
+			
+			protected function change_color(event:MouseEvent):void {
+				
+				clock.setStyle( colorChanges.selectedItem, colorsTextInput.text );
+				
+			}
+			
+			
+			[Bindable]
+			public var colorData:ArrayCollection = new ArrayCollection (
+				
+				[ 
+					"clockFaceColor",
+					"labelColor", 
+					"secondsHandColor",
+					"minutesHandColor", 
+					"hoursHandColor"
+				]                
+			);
+			
+			
+			protected function change_font(event:MouseEvent):void
+			{
+				clock.setStyle( fontChanges.selectedItem, fontTextInput.text );
+				
+			}
+			
+			
+			[Bindable]
+			public var fontData:ArrayCollection = new ArrayCollection (
+				
+				[
+					"labelSize"
+				]
+			); 
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	
+	<s:layout> 
+		<s:HorizontalLayout paddingLeft="20" /> 
+	</s:layout>
+	
+	<s:Group>
+		
+		<s:layout>
+			<s:VerticalLayout />
+		</s:layout>
+		
+		<components:Clock id="clock" width="400" height="400" />
+		
+		<s:Label id="time" text="{clock.currentTime}" />
+		
+		
+		<s:ComboBox id="colorChanges" width="200" height="30" dataProvider="{colorData}" selectedIndex="0" />
+		
+		<s:TextInput id="colorsTextInput" text="367356" />	
+		
+		<s:Button label="Change Color" click="change_color(event)" />
+		
+		
+		
+		<s:ComboBox id="fontChanges" width="200" height="30" dataProvider="{fontData}" selectedIndex="0" />
+		
+		<s:TextInput id ="fontTextInput" text="25" />
+		
+		<s:Button label="Change Font Size"  click="change_font(event)" />
+		
+	</s:Group>
+	
+	
+	
+	
+</s:Application>
